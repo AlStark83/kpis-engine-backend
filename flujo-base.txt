@@ -1,0 +1,1 @@
+Request → Service → Engine → Adapter → Normalizer → KPI → Formatter → Response
