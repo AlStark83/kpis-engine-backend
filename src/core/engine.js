@@ -10,7 +10,6 @@ export const executeKPI = async ({ kpi, source, data }) => {
     throw new Error(`KPI "${kpi}" not found`);
   }
 
-  // 🔥 ADAPTER
   const adapter = ADAPTERS[source];
 
   if (!adapter) {
@@ -18,31 +17,24 @@ export const executeKPI = async ({ kpi, source, data }) => {
   }
 
   const rawData = await adapter({ data });
-
-  // 🔥 NORMALIZER
   const normalizedData = normalizeData(rawData);
 
-  // 🔥 KPI
   const kpiModule = await import(
     `../kpis/${kpiConfig.module}/${kpiConfig.module}.kpi.js`
   );
 
   const kpiResult = await kpiModule.default(normalizedData);
-
-  // 🎨 FORMATTER
   const formatter = FORMATTERS[kpiConfig.formatter];
 
   if (!formatter) {
     throw new Error(`Formatter "${kpiConfig.formatter}" not found`);
   }
 
-  const formatted = formatter({
+  return formatter({
     title: kpiConfig.title,
-    value: kpiResult.total, // 👈 aquí puedes ajustar según KPI
-    extra: {
-      count: kpiResult.count
-    }
+    value: kpiResult.total,
+    extra: Object.fromEntries(
+      Object.entries(kpiResult).filter(([key]) => key !== 'total')
+    )
   });
-
-  return formatted;
 };
