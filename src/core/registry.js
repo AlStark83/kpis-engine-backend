@@ -1,22 +1,42 @@
 export const KPI_REGISTRY = {
-  example: {
-    module: 'example',
-    formatter: 'card',
-    title: 'Example KPI'
+  finanzas_cobranza: {
+    modulePath: '../kpis/finanzas/finanzas_cobranza.kpi.js'
   },
-  dias_promedio_cxc: {
-    module: 'dias_promedio_cxc',
-    formatter: 'card',
-    title: 'Días promedio de CxC'
+  example_card: {
+    modulePath: '../kpis/example/example_card.kpi.js'
   },
-  saldo_por_cobrar: {
-    module: 'saldo_por_cobrar',
-    formatter: 'card',
-    title: 'Saldo por cobrar'
+  example_chart: {
+    modulePath: '../kpis/example/example_chart.kpi.js'
   },
-  antiguedad_reportes_sin_facturar: {
-    module: 'antiguedad_reportes_sin_facturar',
-    formatter: 'card',
-    title: 'Antigüedad de reportes sin facturar'
+  example_table: {
+    modulePath: '../kpis/example/example_table.kpi.js'
   }
+};
+
+export const getKPIConfig = async (kpiKey) => {
+  const registryEntry = KPI_REGISTRY[kpiKey];
+
+  if (!registryEntry) {
+    throw new Error(`KPI "${kpiKey}" not found`);
+  }
+
+  const kpiModule = await import(registryEntry.modulePath);
+  const kpiConfig = kpiModule.default;
+
+  if (!kpiConfig?.storedProcedure) {
+    throw new Error(`KPI "${kpiKey}" is missing "storedProcedure"`);
+  }
+
+  if (!kpiConfig?.adapter) {
+    throw new Error(`KPI "${kpiKey}" is missing "adapter"`);
+  }
+
+  if (!kpiConfig?.formatter) {
+    throw new Error(`KPI "${kpiKey}" is missing "formatter"`);
+  }
+
+  return {
+    key: kpiKey,
+    ...kpiConfig
+  };
 };

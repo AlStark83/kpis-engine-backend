@@ -10,19 +10,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log("🧠 Body:", req.body);
-  next();
-});
+
 app.get('/', (req, res) => {
-  res.json({ message: 'KPI Engine running 🚀' });
+  res.json({ message: 'KPI Engine running' });
 });
 
 app.use('/api/kpis', kpiRoutes);
+app.use('/kpi', kpiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

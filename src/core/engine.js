@@ -1,40 +1,44 @@
-import { KPI_REGISTRY } from './registry.js';
-import { normalizeData } from '../normalizers/base.normalizer.js';
+import { buildFilters } from '../filters/filterBuilder.js';
+import { executeStoredProcedure } from '../services/db.service.js';
+import { getKPIConfig } from './registry.js';
 import { ADAPTERS } from '../adapters/index.js';
 import { FORMATTERS } from '../formatters/index.js';
 
-export const executeKPI = async ({ kpi, source, data }) => {
-  const kpiConfig = KPI_REGISTRY[kpi];
+export const executeKPI = async ({ kpi, filters = {} }) => {
+  const kpiConfig = await getKPIConfig(kpi);
+  const procedureParams = buildFilters(filters);
 
-  if (!kpiConfig) {
-    throw new Error(`KPI "${kpi}" not found`);
-  }
+  const rawData = await executeStoredProcedure({
+    procedure: kpiConfig.storedProcedure,
+    params: procedureParams,
+    kpiConfig
+  });
 
-  const adapter = ADAPTERS[source];
+  const adapter = ADAPTERS[kpiConfig.adapter];
 
   if (!adapter) {
-    throw new Error(`Adapter "${source}" not supported`);
+    throw new Error(`Adapter "${kpiConfig.adapter}" not found`);
   }
 
-  const rawData = await adapter({ data });
-  const normalizedData = normalizeData(rawData);
+  const adaptedData = adapter({
+    rows: rawData,
+    config: kpiConfig
+  });
 
-  const kpiModule = await import(
-    `../kpis/${kpiConfig.module}/${kpiConfig.module}.kpi.js`
-  );
-
-  const kpiResult = await kpiModule.default(normalizedData);
   const formatter = FORMATTERS[kpiConfig.formatter];
 
   if (!formatter) {
     throw new Error(`Formatter "${kpiConfig.formatter}" not found`);
   }
 
-  return formatter({
-    title: kpiConfig.title,
-    value: kpiResult.total,
-    extra: Object.fromEntries(
-      Object.entries(kpiResult).filter(([key]) => key !== 'total')
-    )
+  const result = formatter({
+    data: adaptedData,
+    config: kpiConfig
   });
+
+  return {
+    kpi: kpiConfig.key,
+    filters: procedureParams,
+    result
+  };
 };

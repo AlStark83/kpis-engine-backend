@@ -1,8 +1,8 @@
-export const cardFormatter = ({ title, value, extra = {} }) => {
+export const cardFormatter = ({ data, config = {} }) => {
   return {
     type: 'card',
-    title,
-    value,
-    ...extra
+    title: data.title ?? config.title ?? '',
+    value: data.value ?? null,
+    variation: data.variation ?? null
   };
 };
