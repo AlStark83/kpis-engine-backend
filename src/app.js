@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import kpiRoutes from './api/kpi.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import dashboardRoutes from './routes/dashboard.routes.js';
 
 dotenv.config({ quiet: true });
 
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/kpis', kpiRoutes);
 app.use('/kpi', kpiRoutes);
 
