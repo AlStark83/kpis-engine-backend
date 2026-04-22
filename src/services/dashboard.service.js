@@ -1,78 +1,180 @@
-import { executeSP } from '../utils/db.js';
+import { executeSP } from "../utils/db.js";
 
 const FILTER_PROCEDURES = {
-  anios: {
-    name: 'sp_dash_anios_disponibles',
-    params: []
-  },
-  estados: {
-    name: 'sp_dash_estados_usados',
-    params: []
-  },
-  productos: {
-    name: 'sp_dash_productos_usados',
-    params: []
-  },
-  clientes: {
-    name: 'sp_dash_clientes_usados',
-    params: ['YEARS', 'PRODUCT', 'CLIENT', 'SERVICES', 'COORDINATOR', 'STATUS', 'SUBCLIENTE', 'SOLICITANTE', 'ESTADO', 'GESTOR']
-  },
-  subclientes: {
-    name: 'sp_dash_subclientes_usados',
-    params: ['YEARS', 'PRODUCT', 'CLIENT', 'SERVICES', 'COORDINATOR', 'STATUS', 'SUBCLIENTE', 'SOLICITANTE', 'ESTADO', 'GESTOR']
-  }
+	anios: {
+		name: "sp_dash_anios_disponibles",
+		params: [
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	estados: {
+		name: "sp_dash_estados_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	productos: {
+		name: "sp_dash_productos_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	clientes: {
+		name: "sp_dash_clientes_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	subclientes: {
+		name: "sp_dash_subclientes_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	coordinadores: {
+		name: "sp_dash_coordinadores_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	gestores: {
+		name: "sp_dash_gestores_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
+	solicitantes: {
+		name: "sp_dash_solicitantes_usados",
+		params: [
+			"YEARS",
+			"PRODUCT",
+			"CLIENT",
+			"SERVICES",
+			"COORDINATOR",
+			"STATUS",
+			"SUBCLIENTE",
+			"SOLICITANTE",
+			"ESTADO",
+			"GESTOR",
+		],
+	},
 };
 
 const FILTER_KEY_TO_SP_PARAM = {
-  anio: 'YEARS',
-  producto: 'PRODUCT',
-  cliente: 'CLIENT',
-  servicio: 'SERVICES',
-  coordinador: 'COORDINATOR',
-  estatus: 'STATUS',
-  subcliente: 'SUBCLIENTE',
-  solicitante: 'SOLICITANTE',
-  estado: 'ESTADO',
-  gestor: 'GESTOR'
+	anio: "YEARS",
+	producto: "PRODUCT",
+	cliente: "CLIENT",
+	servicio: "SERVICES",
+	coordinador: "COORDINATOR",
+	estatus: "STATUS",
+	subcliente: "SUBCLIENTE",
+	solicitante: "SOLICITANTE",
+	estado: "ESTADO",
+	gestor: "GESTOR",
 };
 
 const buildProcedureParams = (filters = {}, allowedParams = []) => {
-  const result = {};
+	const result = {};
 
-  Object.entries(FILTER_KEY_TO_SP_PARAM).forEach(([filterKey, spParam]) => {
-    if (allowedParams.includes(spParam)) {
-      const value = filters[filterKey];
-      result[spParam] =
-        value !== undefined && value !== null && String(value).trim() !== ''
-          ? String(value).trim()
-          : null;
-    }
-  });
+	Object.entries(FILTER_KEY_TO_SP_PARAM).forEach(([filterKey, spParam]) => {
+		if (allowedParams.includes(spParam)) {
+			const value = filters[filterKey];
+			result[spParam] =
+				value !== undefined && value !== null && String(value).trim() !== ""
+					? String(value).trim()
+					: null;
+		}
+	});
 
-  return result;
+	return result;
 };
 
 export const getFiltrosService = async (filters = {}) => {
-  try {
-    const entries = Object.entries(FILTER_PROCEDURES);
+	try {
+		const entries = Object.entries(FILTER_PROCEDURES);
 
-    const results = await Promise.all(
-      entries.map(async ([key, config]) => {
-        const params = buildProcedureParams(filters, config.params);
-        const data = await executeSP(config.name, params);
-        return [key, data];
-      })
-    );
+		const results = await Promise.all(
+			entries.map(async ([key, config]) => {
+				const params = buildProcedureParams(filters, config.params);
+				const data = await executeSP(config.name, params);
+				return [key, data];
+			}),
+		);
 
-    return Object.fromEntries(results);
-  } catch (error) {
-    console.error('[dashboard.getFiltrosService] Unexpected error:', error);
-    return {
-      anios: [],
-      estados: [],
-      productos: [],
-      clientes: [],
-      subclientes: []
-    };
-  }
+		return Object.fromEntries(results);
+	} catch (error) {
+		console.error("[dashboard.getFiltrosService] Unexpected error:", error);
+		return {
+			anios: [],
+			estados: [],
+			productos: [],
+			clientes: [],
+			subclientes: [],
+			coordinadores: [],
+			gestores: [],
+			solicitantes: [],
+		};
+	}
 };
