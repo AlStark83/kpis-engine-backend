@@ -1,3 +1,4 @@
+// /src/kpis/example/example_card.kpi.js
 export default {
   key: 'example_card',
   title: 'Example Card KPI',

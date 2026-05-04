@@ -1,3 +1,4 @@
+// /src/adapters/example.adapter.js
 export const exampleAdapter = ({ rows = [] }) => {
   return {
     labels: rows.map((row) => row.area ?? ''),

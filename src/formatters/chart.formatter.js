@@ -1,3 +1,4 @@
+// /src/formatters/chart.formatter.js
 export const chartFormatter = ({ data, config = {} }) => {
   return {
     type: 'chart',

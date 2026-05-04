@@ -1,42 +1,55 @@
+// /src/core/registry.js
 export const KPI_REGISTRY = {
-  finanzas_cobranza: {
-    modulePath: '../kpis/finanzas/finanzas_cobranza.kpi.js'
-  },
-  example_card: {
-    modulePath: '../kpis/example/example_card.kpi.js'
-  },
-  example_chart: {
-    modulePath: '../kpis/example/example_chart.kpi.js'
-  },
-  example_table: {
-    modulePath: '../kpis/example/example_table.kpi.js'
-  }
+	finanzas_cobranza: {
+		modulePath: "../kpis/finanzas/finanzas_cobranza.kpi.js",
+	},
+	example_card: {
+		modulePath: "../kpis/example/example_card.kpi.js",
+	},
+	example_chart: {
+		modulePath: "../kpis/example/example_chart.kpi.js",
+	},
+	example_table: {
+		modulePath: "../kpis/example/example_table.kpi.js",
+	},
+	tiempo_gestion: {
+		modulePath: "../kpis/operaciones/tiempo_gestion.kpi.js",
+	},
+	concluidos_vs_activados: {
+		modulePath: "../kpis/operaciones/concluidos_vs_activados.kpi.js",
+	},
+	carga_coordinadores: {
+		modulePath: "../kpis/operaciones/carga_coordinadores.kpi.js",
+	},
+	carga_gestores: {
+		modulePath: "../kpis/operaciones/carga_gestores.kpi.js",
+	},
 };
 
 export const getKPIConfig = async (kpiKey) => {
-  const registryEntry = KPI_REGISTRY[kpiKey];
+	const registryEntry = KPI_REGISTRY[kpiKey];
 
-  if (!registryEntry) {
-    throw new Error(`KPI "${kpiKey}" not found`);
-  }
+	if (!registryEntry) {
+		throw new Error(`KPI "${kpiKey}" not found`);
+	}
 
-  const kpiModule = await import(registryEntry.modulePath);
-  const kpiConfig = kpiModule.default;
+	const kpiModule = await import(registryEntry.modulePath);
+	const kpiConfig = kpiModule.default;
 
-  if (!kpiConfig?.storedProcedure) {
-    throw new Error(`KPI "${kpiKey}" is missing "storedProcedure"`);
-  }
+	if (!kpiConfig?.storedProcedure) {
+		throw new Error(`KPI "${kpiKey}" is missing "storedProcedure"`);
+	}
 
-  if (!kpiConfig?.adapter) {
-    throw new Error(`KPI "${kpiKey}" is missing "adapter"`);
-  }
+	if (!kpiConfig?.adapter) {
+		throw new Error(`KPI "${kpiKey}" is missing "adapter"`);
+	}
 
-  if (!kpiConfig?.formatter) {
-    throw new Error(`KPI "${kpiKey}" is missing "formatter"`);
-  }
+	if (!kpiConfig?.formatter) {
+		throw new Error(`KPI "${kpiKey}" is missing "formatter"`);
+	}
 
-  return {
-    key: kpiKey,
-    ...kpiConfig
-  };
+	return {
+		key: kpiKey,
+		...kpiConfig,
+	};
 };

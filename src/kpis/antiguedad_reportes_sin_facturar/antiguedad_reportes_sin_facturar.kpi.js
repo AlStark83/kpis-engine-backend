@@ -1,3 +1,4 @@
+// /src/kpis/antiguedad_reportes_sin_facturar/antiguedad_reportes_sin_facturar.kpi.js
 const COMPLETED_STATUSES = new Set(['concluido', 'concluida', 'finalizado', 'finalizada']);
 const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 

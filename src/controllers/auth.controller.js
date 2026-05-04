@@ -1,3 +1,4 @@
+// /src/controllers/auth.controller.js
 import jwt from 'jsonwebtoken';
 import { conn as sequelize } from '../db.js';
 

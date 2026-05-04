@@ -1,3 +1,4 @@
+// /src/kpis/finanzas/finanzas_cobranza.kpi.js
 export default {
   key: 'finanzas_cobranza',
   title: 'Finanzas cobranza',

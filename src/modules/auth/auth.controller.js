@@ -1,3 +1,4 @@
+// /src/modules/auth/auth.controller.js
 import { z } from 'zod';
 import { login as loginService } from './auth.service.js';
 

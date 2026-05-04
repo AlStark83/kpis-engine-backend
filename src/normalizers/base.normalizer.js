@@ -1,3 +1,4 @@
+// /src/normalizers/base.normalizer.js
 export const normalizeData = (data = []) => {
   return data.map((item) => {
     return {

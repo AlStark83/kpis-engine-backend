@@ -1,3 +1,4 @@
+// /src/formatters/card.formatter.js
 export const cardFormatter = ({ data, config = {} }) => {
   return {
     type: 'card',

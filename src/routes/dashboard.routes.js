@@ -1,3 +1,4 @@
+// /src/routes/dashboard.routes.js
 import express from 'express';
 import { getFiltros } from '../controllers/dashboard.controller.js';
 

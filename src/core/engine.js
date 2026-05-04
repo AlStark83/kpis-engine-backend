@@ -1,3 +1,4 @@
+// /src/core/engine.js
 import { buildFilters } from '../filters/filterBuilder.js';
 import { executeStoredProcedure } from '../services/db.service.js';
 import { getKPIConfig } from './registry.js';

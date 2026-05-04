@@ -1,3 +1,4 @@
+// /src/modules/auth/auth.service.js
 import { conn } from '../../db.js';
 
 const EMAIL_COLUMNS = ['email', 'correo', 'mail', 'usuario', 'user_email', 'correo_electronico'];

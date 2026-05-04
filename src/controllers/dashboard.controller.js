@@ -1,3 +1,4 @@
+// /src/controllers/dashboard.controller.js
 import { getFiltrosService } from '../services/dashboard.service.js';
 
 export const getFiltros = async (req, res) => {

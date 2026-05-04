@@ -1,3 +1,5 @@
+<!-- agent.md -->
+<!--  -->
 # 🧠 KPI Engine Backend — Agent Guidelines
 
 ## 🎯 Propósito del sistema

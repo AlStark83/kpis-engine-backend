@@ -1,3 +1,4 @@
+// /src/adapters/table.adapter.js
 const inferColumns = (rows) => {
   if (!Array.isArray(rows) || rows.length === 0) {
     return [];

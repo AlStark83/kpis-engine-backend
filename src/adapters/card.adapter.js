@@ -1,3 +1,4 @@
+// /src/adapters/card.adapter.js
 const getFirstRow = (rows) => {
   if (!Array.isArray(rows) || rows.length === 0) {
     return {};

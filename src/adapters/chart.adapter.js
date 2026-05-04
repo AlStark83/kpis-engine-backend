@@ -1,3 +1,4 @@
+// /src/adapters/chart.adapter.js
 const buildSingleDataset = ({ rows, labelField, valueField, datasetLabel }) => {
   return {
     labels: rows.map((row) => row[labelField] ?? ''),

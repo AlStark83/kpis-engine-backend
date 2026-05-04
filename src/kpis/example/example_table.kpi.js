@@ -1,3 +1,4 @@
+// /src/kpis/example/example_table.kpi.js
 export default {
   key: 'example_table',
   title: 'Example Table KPI',

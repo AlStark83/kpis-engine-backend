@@ -1,3 +1,4 @@
+// /src/kpis/saldo_por_cobrar/saldo_por_cobrar.kpi.js
 const PENDING_STATUS = 'pendiente';
 
 export default (data = []) => {

@@ -1,3 +1,4 @@
+// /src/utils/db.js
 import { QueryTypes } from 'sequelize';
 import { conn as sequelize } from '../db.js';
 

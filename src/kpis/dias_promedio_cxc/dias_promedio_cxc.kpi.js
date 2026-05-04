@@ -1,3 +1,4 @@
+// /src/kpis/dias_promedio_cxc/dias_promedio_cxc.kpi.js
 const ALERT_THRESHOLD_DAYS = 30;
 const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 

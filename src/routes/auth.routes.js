@@ -1,3 +1,4 @@
+// /src/routes/auth.routes.js
 import express from 'express';
 import { getMe, login, validateDashboardToken } from '../controllers/auth.controller.js';
 import { verifyToken } from '../middlewares/auth.middleware.js';
