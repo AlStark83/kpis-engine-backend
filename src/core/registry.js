@@ -24,6 +24,9 @@ export const KPI_REGISTRY = {
 	carga_gestores: {
 		modulePath: "../kpis/operaciones/carga_gestores.kpi.js",
 	},
+	carga_coordinadores: {
+		modulePath: "../kpis/operaciones/carga_coordinadores.kpi.js",
+	},
 };
 
 export const getKPIConfig = async (kpiKey) => {

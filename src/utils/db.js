@@ -31,8 +31,8 @@ export const executeSP = async (spName, params = {}) => {
       statement += ` ${fragments.join(', ')}`;
     }
 
-    console.log('[dashboard.executeSP] statement:', statement);
-    console.log('[dashboard.executeSP] replacements:', replacements);
+    // console.log('[dashboard.executeSP] statement:', statement);
+    // console.log('[dashboard.executeSP] replacements:', replacements);
 
     const rows = await sequelize.query(statement, {
       replacements,
