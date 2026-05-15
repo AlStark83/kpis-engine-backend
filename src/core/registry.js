@@ -1,17 +1,8 @@
 // /src/core/registry.js
 export const KPI_REGISTRY = {
-	finanzas_cobranza: {
-		modulePath: "../kpis/finanzas/finanzas_cobranza.kpi.js",
-	},
-	example_card: {
-		modulePath: "../kpis/example/example_card.kpi.js",
-	},
-	example_chart: {
-		modulePath: "../kpis/example/example_chart.kpi.js",
-	},
-	example_table: {
-		modulePath: "../kpis/example/example_table.kpi.js",
-	},
+  // =========================
+  // OPERACIONES
+  // =========================
 	tiempo_gestion: {
 		modulePath: "../kpis/operaciones/tiempo_gestion.kpi.js",
 	},
@@ -26,6 +17,12 @@ export const KPI_REGISTRY = {
 	},
 	carga_coordinadores: {
 		modulePath: "../kpis/operaciones/carga_coordinadores.kpi.js",
+	},
+	// =========================
+  // FINANZAS
+  // =========================
+	finanzas_promedio_dias_cxc: {
+		modulePath: "../kpis/finanzas/promedio_dias_cxc.kpi.js",
 	},
 };
 
