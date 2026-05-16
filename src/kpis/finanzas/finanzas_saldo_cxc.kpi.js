@@ -1,20 +1,19 @@
-//src/kpis/finanzas/promedio_dias_cxc.kpi.js
+// src/kpis/finanzas/finanzas_saldo_cxc.kpi.js
 
 export default {
-	storedProcedure: "sp_Finanzas_promedio_dias_cxc",
+	storedProcedure: "sp_Finanzas_Saldo_cxc_facturas_sin_cobrar",
 
 	adapter: "card",
 
 	formatter: "card",
 
-	title: "CxC Promedio",
+	title: "Saldo CxC",
 
 	fields: {
-		valueField: "PromedioDiasCxC",
+		valueField: "MontoTotalSinCobrar",
 	},
 
-	cardVariant: "cxc_promedio",
-
+	cardVariant: "saldo_cxc",
 	mapFilters: (filters) => {
 		const normalize = (value) => {
 			if (!value || (Array.isArray(value) && value.length === 0)) {

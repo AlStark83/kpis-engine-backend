@@ -1,8 +1,8 @@
 // /src/core/registry.js
 export const KPI_REGISTRY = {
-  // =========================
-  // OPERACIONES
-  // =========================
+	// =========================
+	// OPERACIONES
+	// =========================
 	tiempo_gestion: {
 		modulePath: "../kpis/operaciones/tiempo_gestion.kpi.js",
 	},
@@ -19,10 +19,13 @@ export const KPI_REGISTRY = {
 		modulePath: "../kpis/operaciones/carga_coordinadores.kpi.js",
 	},
 	// =========================
-  // FINANZAS
-  // =========================
+	// FINANZAS
+	// =========================
 	finanzas_promedio_dias_cxc: {
 		modulePath: "../kpis/finanzas/promedio_dias_cxc.kpi.js",
+	},
+	finanzas_saldo_cxc: {
+		modulePath: "../kpis/finanzas/finanzas_saldo_cxc.kpi.js",
 	},
 };
 
