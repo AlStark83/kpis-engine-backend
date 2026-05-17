@@ -30,6 +30,9 @@ export const KPI_REGISTRY = {
 	finanzas_impacto_flujo: {
 		modulePath: "../kpis/finanzas/finanzas_impacto_flujo.kpi.js",
 	},
+	finanzas_antiguedad_servicios: {
+		modulePath: "../kpis/finanzas/finanzas_antiguedad_servicios.kpi.js",
+	},
 };
 
 export const getKPIConfig = async (kpiKey) => {
