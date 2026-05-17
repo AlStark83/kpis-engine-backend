@@ -33,6 +33,9 @@ export const KPI_REGISTRY = {
 	finanzas_antiguedad_servicios: {
 		modulePath: "../kpis/finanzas/finanzas_antiguedad_servicios.kpi.js",
 	},
+	finanzas_salud_cliente: {
+		modulePath: "../kpis/finanzas/finanzas_salud_cliente.kpi.js",
+	},
 };
 
 export const getKPIConfig = async (kpiKey) => {
