@@ -1,0 +1,55 @@
+// src/kpis/finanzas/finanzas_impacto_flujo.kpi.js
+export default {
+  storedProcedure:
+    "sp_Finanzas_impacto_en_flujo",
+
+  adapter: "card",
+
+  formatter: "card",
+
+  title: "Impacto flujo",
+
+  fields: {
+    valueField:
+      "PorcentajeConcluidosConciliadosSinFacturar",
+  },
+
+  cardVariant: "impacto_flujo",
+
+  mapFilters: (filters) => {
+    const normalize = (value) => {
+      if (
+        !value ||
+        (Array.isArray(value) &&
+          value.length === 0)
+      ) {
+        return null;
+      }
+
+      if (Array.isArray(value)) {
+        return value.join(",");
+      }
+
+      return value;
+    };
+
+    return {
+      YEARS: normalize(filters.anio),
+      PRODUCT: normalize(filters.producto),
+      CLIENT: normalize(filters.cliente),
+      SERVICES: normalize(filters.servicio),
+      COORDINATOR:
+        normalize(filters.coordinador),
+      STATUS:
+        normalize(filters.estatus),
+      SUBCLIENTE:
+        normalize(filters.subcliente),
+      SOLICITANTE:
+        normalize(filters.solicitante),
+      ESTADO:
+        normalize(filters.estado),
+      GESTOR:
+        normalize(filters.gestor),
+    };
+  },
+};

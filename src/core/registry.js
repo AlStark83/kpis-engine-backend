@@ -27,6 +27,9 @@ export const KPI_REGISTRY = {
 	finanzas_saldo_cxc: {
 		modulePath: "../kpis/finanzas/finanzas_saldo_cxc.kpi.js",
 	},
+	finanzas_impacto_flujo: {
+		modulePath: "../kpis/finanzas/finanzas_impacto_flujo.kpi.js",
+	},
 };
 
 export const getKPIConfig = async (kpiKey) => {
