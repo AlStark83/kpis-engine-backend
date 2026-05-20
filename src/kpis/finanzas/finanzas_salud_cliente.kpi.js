@@ -1,4 +1,5 @@
 // src/kpis/finanzas/finanzas_antiguedad_servicios.kpi.js
+import { FEATURES } from "../../config/features.js";
 
 export default {
 	storedProcedure: "sp_Finanzas_salud_por_cliente",
@@ -22,8 +23,16 @@ export default {
 			return value;
 		};
 
+		const hasDateRange = filters.fechaInicio || filters.fechaFin;
+
 		return {
 			YEARS: normalize(filters.anio),
+
+			...(FEATURES.enableDateRangeFilters && {
+				FECHA_INICIO: normalize(filters.fechaInicio),
+				FECHA_FIN: normalize(filters.fechaFin),
+			}),
+
 			PRODUCT: normalize(filters.producto),
 			CLIENT: normalize(filters.cliente),
 			SERVICES: normalize(filters.servicio),
