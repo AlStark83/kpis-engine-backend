@@ -2,7 +2,7 @@
 import { FEATURES } from "../../config/features.js";
 
 export default {
-	storedProcedure: "sp_Finanzas_promedio_dias_cxc",
+	storedProcedure: "sp_Finanzas_promedio_dias_cxc_rf",
 
 	adapter: "card",
 

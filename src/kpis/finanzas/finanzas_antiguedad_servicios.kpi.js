@@ -2,7 +2,7 @@
 import { FEATURES } from "../../config/features.js";
 
 export default {
-	storedProcedure: "sp_finanzas_antiguedad_servicios_por_facturar",
+	storedProcedure: "sp_finanzas_antiguedad_servicios_por_facturar_rf",
 
 	adapter: "table",
 

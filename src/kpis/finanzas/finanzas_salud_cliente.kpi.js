@@ -2,7 +2,7 @@
 import { FEATURES } from "../../config/features.js";
 
 export default {
-	storedProcedure: "sp_Finanzas_salud_por_cliente",
+	storedProcedure: "sp_Finanzas_salud_por_cliente_rf",
 
 	adapter: "table",
 

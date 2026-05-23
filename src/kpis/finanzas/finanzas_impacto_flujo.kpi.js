@@ -2,7 +2,7 @@
 import { FEATURES } from "../../config/features.js";
 
 export default {
-	storedProcedure: "sp_Finanzas_impacto_en_flujo",
+	storedProcedure: "sp_Finanzas_impacto_en_flujo_rf",
 
 	adapter: "card",
 

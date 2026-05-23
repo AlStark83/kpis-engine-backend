@@ -24,10 +24,10 @@ export default {
 		return {
 			YEARS: normalize(filters.anio),
 
-			...(FEATURES.enableDateRangeFilters && {
-				FECHA_INICIO: normalize(filters.fechaInicio),
-				FECHA_FIN: normalize(filters.fechaFin),
-			}),
+			// ...(FEATURES.enableDateRangeFilters && {
+			// 	FECHA_INICIO: normalize(filters.fechaInicio),
+			// 	FECHA_FIN: normalize(filters.fechaFin),
+			// }),
 			
 			PRODUCT: normalize(filters.producto),
 			CLIENT: normalize(filters.cliente),

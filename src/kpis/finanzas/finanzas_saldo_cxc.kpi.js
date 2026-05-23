@@ -2,7 +2,7 @@
 import { FEATURES } from "../../config/features.js";
 
 export default {
-	storedProcedure: "sp_Finanzas_Saldo_cxc_facturas_sin_cobrar",
+	storedProcedure: "sp_Finanzas_Saldo_cxc_facturas_sin_cobrar_rf",
 
 	adapter: "card",
 

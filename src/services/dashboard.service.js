@@ -3,7 +3,7 @@ import { executeSP } from "../utils/db.js";
 
 const FILTER_PROCEDURES = {
 	anios: {
-		name: "sp_dash_anios_disponibles",
+		name: "sp_dash_anios_disponibles_filtros",
 		params: [
 			"PRODUCT",
 			"CLIENT",
@@ -17,7 +17,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	estados: {
-		name: "sp_dash_estados_usados",
+		name: "sp_dash_estados_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -32,7 +32,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	productos: {
-		name: "sp_dash_productos_usados",
+		name: "sp_dash_productos_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -47,7 +47,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	clientes: {
-		name: "sp_dash_clientes_usados",
+		name: "sp_dash_clientes_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -62,7 +62,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	subclientes: {
-		name: "sp_dash_subclientes_usados",
+		name: "sp_dash_subclientes_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -77,7 +77,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	coordinadores: {
-		name: "sp_dash_coordinadores_usados",
+		name: "sp_dash_coordinadores_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -92,7 +92,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	gestores: {
-		name: "sp_dash_gestores_usados",
+		name: "sp_dash_gestores_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -107,7 +107,7 @@ const FILTER_PROCEDURES = {
 		],
 	},
 	solicitantes: {
-		name: "sp_dash_solicitantes_usados",
+		name: "sp_dash_solicitantes_usados_filtros",
 		params: [
 			"YEARS",
 			"PRODUCT",
@@ -125,6 +125,8 @@ const FILTER_PROCEDURES = {
 
 const FILTER_KEY_TO_SP_PARAM = {
 	anio: "YEARS",
+	fechaInicio: "FECHA_INICIO",
+	fechaFin: "FECHA_FIN",
 	producto: "PRODUCT",
 	cliente: "CLIENT",
 	servicio: "SERVICES",
