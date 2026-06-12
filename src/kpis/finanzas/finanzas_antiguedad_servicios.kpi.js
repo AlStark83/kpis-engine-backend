@@ -21,14 +21,16 @@ export default {
 			return value;
 		};
 
-		const hasDateRange = filters.fechaInicio || filters.fechaFin;
+		const hasCompleteDateRange = filters.fechaInicio && filters.fechaFin;
 
 		return {
-			YEARS: hasDateRange ? null : normalize(filters.anio),
+			YEARS: hasCompleteDateRange ? null : normalize(filters.anio),
 
 			...(FEATURES.enableDateRangeFilters && {
-				FECHA_INICIO: normalize(filters.fechaInicio),
-				FECHA_FIN: normalize(filters.fechaFin),
+				FECHA_INICIO: hasCompleteDateRange
+					? normalize(filters.fechaInicio)
+					: null,
+				FECHA_FIN: hasCompleteDateRange ? normalize(filters.fechaFin) : null,
 			}),
 
 			PRODUCT: normalize(filters.producto),

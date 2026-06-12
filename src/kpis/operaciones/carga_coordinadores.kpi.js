@@ -22,13 +22,10 @@ export default {
 		const hasDateRange = filters.fechaInicio || filters.fechaFin;
 
 		return {
-			YEARS: normalize(filters.anio),
+			FECHA_INICIO: hasDateRange ? normalize(filters.fechaInicio) : null,
+			FECHA_FIN: hasDateRange ? normalize(filters.fechaFin) : null,
+			YEARS: hasDateRange ? null : normalize(filters.anio),
 
-			// ...(FEATURES.enableDateRangeFilters && {
-			// 	FECHA_INICIO: normalize(filters.fechaInicio),
-			// 	FECHA_FIN: normalize(filters.fechaFin),
-			// }),
-			
 			PRODUCT: normalize(filters.producto),
 			CLIENT: normalize(filters.cliente),
 			SERVICES: normalize(filters.servicio),

@@ -28,21 +28,22 @@ export default {
 			return value;
 		};
 
-		const hasDateRange = filters.fechaInicio || filters.fechaFin;
+		const hasCompleteDateRange = filters.fechaInicio && filters.fechaFin;
 
 		return {
-			YEARS: normalize(filters.anio),
+			YEARS: hasCompleteDateRange ? null : normalize(filters.anio),
 
 			...(FEATURES.enableDateRangeFilters && {
-				FECHA_INICIO: normalize(filters.fechaInicio),
-				FECHA_FIN: normalize(filters.fechaFin),
+				FECHA_INICIO: hasCompleteDateRange
+					? normalize(filters.fechaInicio)
+					: null,
+				FECHA_FIN: hasCompleteDateRange ? normalize(filters.fechaFin) : null,
 			}),
 
 			PRODUCT: normalize(filters.producto),
 			CLIENT: normalize(filters.cliente),
 			SERVICES: normalize(filters.servicio),
 			COORDINATOR: normalize(filters.coordinador),
-			STATUS: normalize(filters.estatus),
 			SUBCLIENTE: normalize(filters.subcliente),
 			SOLICITANTE: normalize(filters.solicitante),
 			ESTADO: normalize(filters.estado),

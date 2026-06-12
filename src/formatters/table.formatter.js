@@ -1,5 +1,4 @@
 // /src/formatters/table.formatter.js
-// /src/formatters/table.formatter.js
 
 export const tableFormatter = ({ data, config = {} }) => {
 	return {

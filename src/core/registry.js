@@ -15,8 +15,11 @@ export const KPI_REGISTRY = {
 	carga_gestores: {
 		modulePath: "../kpis/operaciones/carga_gestores.kpi.js",
 	},
-	carga_coordinadores: {
-		modulePath: "../kpis/operaciones/carga_coordinadores.kpi.js",
+	resumen_operativo: {
+		modulePath: "../kpis/operaciones/resumen_operativo.kpi.js",
+	},
+	abiertos_vs_concluidos_fecha_alta: {
+		modulePath: "../kpis/operaciones/abiertos_vs_concluidos_fecha_alta.kpi.js",
 	},
 	// =========================
 	// FINANZAS
