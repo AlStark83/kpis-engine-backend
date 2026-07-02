@@ -6,25 +6,25 @@ import { ADAPTERS } from "../adapters/index.js";
 import { FORMATTERS } from "../formatters/index.js";
 
 export const executeKPI = async ({ kpi, filters = {} }) => {
-	console.log("🧠 KPI:", kpi);
+	// console.log("🧠 KPI:", kpi);
 
 	const kpiConfig = await getKPIConfig(kpi);
-	console.log("🧠 KPI CONFIG:", kpiConfig);
+	// console.log("🧠 KPI CONFIG:", kpiConfig);
 
 	const procedureParams = kpiConfig.mapFilters
 		? kpiConfig.mapFilters(filters)
 		: {};
-	console.log("🧠 PARAMS:", procedureParams);
+	// console.log("🧠 PARAMS:", procedureParams);
 
 	const rawData = await executeStoredProcedure({
 		procedure: kpiConfig.storedProcedure,
 		params: procedureParams,
 		kpiConfig,
 	});
-	console.log("🧠 RAW DATA:", rawData);
+	// console.log("🧠 RAW DATA:", rawData);
 
 	const adapter = ADAPTERS[kpiConfig.adapter];
-	console.log("🧠 Adapter:", kpiConfig.adapter);
+	// console.log("🧠 Adapter:", kpiConfig.adapter);
 
 	if (!adapter) {
 		throw new Error(`Adapter "${kpiConfig.adapter}" not found`);
@@ -36,7 +36,7 @@ export const executeKPI = async ({ kpi, filters = {} }) => {
 	});
 
 	const formatter = FORMATTERS[kpiConfig.formatter];
-	console.log("🧠 Formatter:", kpiConfig.formatter);
+	// console.log("🧠 Formatter:", kpiConfig.formatter);
 
 	if (!formatter) {
 		throw new Error(`Formatter "${kpiConfig.formatter}" not found`);
