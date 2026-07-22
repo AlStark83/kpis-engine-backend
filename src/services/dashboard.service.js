@@ -1,4 +1,5 @@
 // /src/services/dashboard.service.js
+import { mapDashboardFiltersToSql } from "../filters/filterBuilder.js";
 import { executeSP } from "../utils/db.js";
 
 const FILTER_PROCEDURES = {
@@ -123,35 +124,10 @@ const FILTER_PROCEDURES = {
 	},
 };
 
-const FILTER_KEY_TO_SP_PARAM = {
-	anio: "YEARS",
-	fechaInicio: "FECHA_INICIO",
-	fechaFin: "FECHA_FIN",
-	producto: "PRODUCT",
-	cliente: "CLIENT",
-	servicio: "SERVICES",
-	coordinador: "COORDINATOR",
-	estatus: "STATUS",
-	subcliente: "SUBCLIENTE",
-	solicitante: "SOLICITANTE",
-	estado: "ESTADO",
-	gestor: "GESTOR",
-};
-
 const buildProcedureParams = (filters = {}, allowedParams = []) => {
-	const result = {};
-
-	Object.entries(FILTER_KEY_TO_SP_PARAM).forEach(([filterKey, spParam]) => {
-		if (allowedParams.includes(spParam)) {
-			const value = filters[filterKey];
-			result[spParam] =
-				value !== undefined && value !== null && String(value).trim() !== ""
-					? String(value).trim()
-					: null;
-		}
+	return mapDashboardFiltersToSql(filters, {
+		allowedParams,
 	});
-
-	return result;
 };
 
 export const getFiltrosService = async (filters = {}) => {
